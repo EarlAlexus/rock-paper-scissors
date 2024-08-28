@@ -25,19 +25,34 @@ function getHumanChoice() {
     }
 }
 
-let humanScore = 0;
-let computerScore = 0;
+function playGame() {
+    let humanScore = 0;
+    let computerScore = 0;
 
-function playRound(humanChoice, computerChoice) {
+    function playRound(humanChoice, computerChoice) {
 
-    if (humanChoice === computerChoice) {
-        console.log("It's a draw!")
-    } else if ((humanChoice === "Paper" && computerChoice === "Rock") || (humanChoice === "Scissors" && computerChoice === "Paper") ||
-        (humanChoice === "Rock" && computerChoice === "Scissors")) {
-        humanScore++;
-        console.log(`You win! Computer loses. ${humanChoice} beats ${computerChoice}.`)
+        if (humanChoice === computerChoice) {
+            return `It's a draw!`
+        } else if ((humanChoice === "Paper" && computerChoice === "Rock") || (humanChoice === "Scissors" && computerChoice === "Paper") ||
+            (humanChoice === "Rock" && computerChoice === "Scissors")) {
+            humanScore++;
+            return `You win! Computer loses. ${humanChoice} beats ${computerChoice}.`
+        } else {
+            computerScore++;
+            return `You lose! Computer wins. ${computerChoice} beats ${humanChoice}.`
+        }
+    }
+
+    for (let i = 0; i < 5; i++) {
+        console.log(playRound(getHumanChoice(), getComputerChoice()));
+    }
+    if (humanScore > computerScore) {
+        return `You are the final winner! The final score is Human(${humanScore}) and Computer(${computerScore}).`
+    } else if (computerScore > humanScore) {
+        return `You are the loser! The final score is Human (${humanScore}) and Computer (${computerScore}).`
     } else {
-        computerScore++;
-        console.log(`You lose! Computer wins. ${computerChoice} beats ${humanChoice}.`)
+        return `No one wins! It's a draw. The final score is Human (${humanScore}) and Computer (${computerScore}).`
     }
 }
+
+console.log(playGame())
