@@ -24,3 +24,7 @@ function getHumanChoice() {
         return "Wrong. Try again."
     }
 }
+
+let humanScore = 0;
+let computerScore = 0;
+
